@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'main',
     'rest_framework'
 ]
-
+APPEND_SLASH=False
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
