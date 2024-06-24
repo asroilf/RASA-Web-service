@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  django:
+    build:
+      context: ./web_service
+    ports:
+      - "8000:8000"
+    depends_on:
+      - rasa
+    environment:
+      - DEBUG=1
+    volumes:
+      - ./web_service:/app
+
+  rasa:
+    build:
+      context: ./rasa
+    command: ["run", "-m", "models","--enable-api", "--cors", "*", "--debug"]
+    ports:
+      - "5005:5005"
+    volumes:
+      - rasa_models:/app/models
+
+
+volumes:
+  rasa_models:
