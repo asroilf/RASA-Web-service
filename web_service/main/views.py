@@ -15,11 +15,12 @@ class Message_to_rasa(APIView):
         mess = request.data
         if response.status_code==200:
             rasa_data = response.json()
+            print(rasa_data, "------------------------------====\n")
             response_data = {
                     'id': idd,
                     'message': rasa_data[0]['text'] if rasa_data else "No response"
                     }
-            return Response(mess, status=status.HTTP_200_OK)
+            return Response(response_data, status=status.HTTP_200_OK)
         else:
             return Response({"error": "Rasa server error!"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
